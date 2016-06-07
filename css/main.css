@@ -1,0 +1,43 @@
+@font-face {
+	font-family: 'cern';
+	src:url('/fonts/cern-terminal.eot');
+	src:url('/fonts/cern-terminal.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/cern-terminal.woff') format('woff'),
+		url('/fonts/cern-terminal.ttf') format('truetype'),
+		url('/fonts/cern-terminal.svg#icomoon') format('svg');
+}
+
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: black;
+  cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+* {
+  cursor: inherit;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.terminal {
+  height: 100%;
+  color: hsl(150, 100%, 50%);
+  font-size: 1.75em;
+  font-family: cern, monospace;
+}
+
+.terminal-line {
+  font-family: cern, monospace;
+  color: hsl(150, 100%, 50%);
+}
