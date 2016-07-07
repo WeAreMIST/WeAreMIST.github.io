@@ -4,14 +4,18 @@ app.config(function($routeProvider) {
   $routeProvider
 
   //route for Home Page
-  .when('/', {
-    templateUrl: './views/home.html',
-    controller: 'homeController'
+  .when('/geek', {
+    templateUrl: './views/geek.html',
+    controller: 'geekController'
+  })
+
+  .when('/nongeek', {
+    templateUrl: './views/nongeek.html'
   });
 
 });
 
-app.controller('homeController', ['$scope', '$location', function($scope, $location) {
+app.controller('geekController', ['$scope', '$location', function($scope, $location) {
 
   setTimeout(function () {
       $scope.$broadcast('terminal-output', {
