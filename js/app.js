@@ -38,8 +38,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 
 app.controller('nonGeekController', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll) {
    $scope.scrollTo = function(id) {
-      $location.hash(id);
-      $anchorScroll();
+      $anchorScroll(id);
    };
 }]);
 
