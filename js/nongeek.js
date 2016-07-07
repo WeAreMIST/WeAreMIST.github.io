@@ -202,3 +202,10 @@
 	});
 
 })(jQuery);
+
+$(document).ready(function() {
+
+	// show page on ready
+	$("#loadingMask").fadeOut();
+
+});
