@@ -10,7 +10,8 @@ app.config(function($routeProvider) {
   })
 
   .when('/nongeek', {
-    templateUrl: './views/nongeek.html'
+    templateUrl: './views/nongeek.html',
+    controller: 'nonGeekController'
   });
 
 });
@@ -33,6 +34,13 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
           // $location.path('/newNgRouteYouWishToDisplay');
   });
 
+}]);
+
+app.controller('nonGeekController', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll) {
+   $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+   };
 }]);
 
 app.config(['terminalConfigurationProvider', function (terminalConfigurationProvider) {
