@@ -22,7 +22,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
       $scope.$broadcast('terminal-output', {
           output: true,
           text: ['We are MIST',
-                 'Protect your roots.'],
+                 'Defend your roots.'],
           breakLine: true
       });
       $scope.$apply();
