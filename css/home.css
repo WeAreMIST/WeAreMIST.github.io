@@ -1,0 +1,94 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  background-color: #253747;
+  overflow: hidden;
+}
+.slider {
+  /* set initial width */
+  width: 51vw;
+  /* hide the content that overflows (to allow second box to show through) */
+  overflow: hidden;
+  display: inline-block;
+  /* skew container so that it has angled edge, and set up transition */
+  -webkit-transform: skewX(0deg);
+  -moz-transform: skewX(0deg);
+  -ms-transform: skewX(0deg);
+  -o-transform: skewX(0deg);
+  /*transform: skewX(-30deg);*/
+  -webkit-transition: width 1.2s ease-in-out;
+  -moz-transition: width 1.2s ease-in-out;
+  -ms-transition: width 1.2s ease-in-out;
+  -o-transition: width 1.2s ease-in-out;
+  transition: width 1.2s ease-in-out;
+  /* give negative margin to remove gap caused by left hand skew */
+  /*margin-left: -76px;*/
+  border-right: 1vw solid rgba(248, 248, 255, 1);
+  /* hide pointer events for unseen content */
+  pointer-events: none;
+}
+
+/* set the size of the boxes and any decoration */
+
+.box {
+  height: 100vh;
+  width: 100vw;
+  /*border-radius: .5em;*/
+  overflow: hidden;
+}
+.box a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.nongeek {
+  /* skew back by negative of parent’s skew so contents is upright */
+  -webkit-transform: skewX(0deg);
+  -moz-transform: skewX(0deg);
+  -ms-transform: skewX(0deg);
+  -o-transform: skewX(0deg);
+  /*transform: skewX(30deg);*/
+  background: url('../images/nongeek.png') no-repeat;
+  /*margin-left: 76px;*/
+    background-size: 100% auto;
+  /* give margin to push content away from left slanted edge */
+  pointer-events: auto;
+  /* allow pointer events for the box */
+}
+.geek {
+  background: url('../images/geek.png') no-repeat;
+  background-size: 100% auto;
+  position: absolute;
+  /*box-shadow: 0 0 10px rgba(0, 0, 0, .7);*/
+}
+
+.slider:hover {
+  width: 81vw;
+}
+
+.geek:hover + .slider {
+  width: 21vw;
+}
+
+
+.dummy-pane {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+.left {
+  float:left;
+  width: 50%;
+  height: 100%;
+}
+.right {
+  width: 50%;
+  height: 100%;
+  float: right;
+}

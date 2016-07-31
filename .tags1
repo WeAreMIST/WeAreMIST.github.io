@@ -1,0 +1,18 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+html	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^html {$/;"	function	line:1
+body	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^body {$/;"	function	line:4
+.slider	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.slider {$/;"	function	line:10
+.box	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.box {$/;"	function	line:36
+.box a	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.box a {$/;"	function	line:42
+.nongeek	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.nongeek {$/;"	function	line:47
+.geek	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.geek {$/;"	function	line:61
+.slider:hover	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.slider:hover {$/;"	function	line:68
+.geek:hover + .slider	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.geek:hover + .slider {$/;"	function	line:72
+.dummy-pane	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.dummy-pane {$/;"	function	line:77
+.left	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.left {$/;"	function	line:85
+.right	C:\Users\arora\Documents\GitHub\WeAreMIST.github.io\css\home.css	/^.right {$/;"	function	line:90
