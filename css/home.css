@@ -53,7 +53,7 @@ body {
   /*transform: skewX(30deg);*/
   background: url('../images/nongeek.png') no-repeat;
   /*margin-left: 76px;*/
-    background-size: 100% auto;
+  background-size: 100% auto;
   /* give margin to push content away from left slanted edge */
   pointer-events: auto;
   /* allow pointer events for the box */
@@ -64,16 +64,12 @@ body {
   position: absolute;
   /*box-shadow: 0 0 10px rgba(0, 0, 0, .7);*/
 }
-
 .slider:hover {
   width: 81vw;
 }
-
-.geek:hover + .slider {
+.geek:hover+ .slider {
   width: 21vw;
 }
-
-
 .dummy-pane {
   width: 100%;
   height: 100%;
@@ -83,7 +79,7 @@ body {
   z-index: 10;
 }
 .left {
-  float:left;
+  float: left;
   width: 50%;
   height: 100%;
 }
