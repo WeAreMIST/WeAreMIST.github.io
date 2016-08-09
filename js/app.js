@@ -46,15 +46,16 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 
 }]);
 
-app.controller('nonGeekController', ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll) {
-	$scope.scrollTo = function(id) {
-		$anchorScroll(id);
-	};
+app.controller('nonGeekController', ['$scope', '$location', function($scope, $location) {
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = "./js/nongeek.js";
+	document.head.appendChild(s);
 }]);
 
 app.controller('homeController', ['$scope', function($scope) {
 	// $scope.load = function() {
-  //
+	//
 	// 	$(".right").hover(
 	// 		function() {
 	// 			$(".slider").css("width", "0vw");
@@ -62,18 +63,19 @@ app.controller('homeController', ['$scope', function($scope) {
 	// 		function() {
 	// 			$(".slider").css("width", "55vw");
 	// 		});
-  //
-  //     $(".left").hover(
-  // 			function() {
-  // 				$(".slider").css("width", "130vw");
-  // 			},
-  // 			function() {
-  // 				$(".slider").css("width", "55vw");
-  // 			});
-  //
+	//
+	//     $(".left").hover(
+	// 			function() {
+	// 				$(".slider").css("width", "130vw");
+	// 			},
+	// 			function() {
+	// 				$(".slider").css("width", "55vw");
+	// 			});
+	//
 	// };
-  //
+	//
 	// $scope.load();
+
 }]);
 
 app.config(['terminalConfigurationProvider', function(terminalConfigurationProvider) {
