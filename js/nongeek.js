@@ -111,7 +111,7 @@
 							$section.removeClass('inactive');
 
 							// No locked links? Deactivate all links and activate this section's one.
-							if($sidebar_a.filter('.active-locked').length == 0) {
+							if($sidebar_a.filter('.active-locked').length === 0) {
 
 								$sidebar_a.removeClass('active');
 								$this.addClass('active');
