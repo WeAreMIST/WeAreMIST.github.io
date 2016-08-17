@@ -3050,11 +3050,11 @@ body.is-loading #sidebar nav ul li {
   text-align: center;
   width: 20%
   display: inline;
-  border: solid 1px rgba(255, 255, 255, 0.15);
+  border: solid 2px rgba(255, 255, 255, 0.15);
 }
 
 .profile-small img {
-  width: 10em;
+  width: 8em;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.15);
   margin: 0.5em;
