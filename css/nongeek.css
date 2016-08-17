@@ -3048,16 +3048,23 @@ body.is-loading #sidebar nav ul li {
 .profile-small {
   padding: 1em 0em 1em 0em;
   text-align: center;
-  width: 20%
-  display: inline;
   border: solid 2px rgba(255, 255, 255, 0.15);
 }
 
 .profile-small img {
-  width: 8em;
+  width: 14%;
   border-radius: 50%;
   border: 2px solid rgba(255,255,255,0.15);
-  margin: 0.5em;
+  margin: 0.3em;
+}
+
+@media screen and (max-width: 730px) {
+  .profile-small img {
+    width: 30%;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    margin: 0.3em;
+  }
 }
 
 .profile img {
