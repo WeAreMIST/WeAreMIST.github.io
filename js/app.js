@@ -38,8 +38,74 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		$scope.$apply();
 	}, 0.1);
 
-	$scope.$on('terminal-input', function(e, consoleInput) {
-		var cmd = consoleInput[0];
+/* ~Functions~ */
+		tHelp = function() {
+			setTimeout(function() {
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: ['Available Commands:',
+						'help: Get Help',
+						'man: what we do',
+						'ls: current events',
+						'clr: clear screen'
+					],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		};
+
+		tMan = function() {
+			setTimeout(function() {
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: ['We are committed to spreading awareness about the increasing need for Information and Network Security.',
+					'We plan to train other like-minded students to enhance their skills and aptitude in this branch of computer science.'
+					],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		};
+
+		tLs= function() {
+			setTimeout(function() {
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: ['Aug 25 2016: MIST GBM - NLH 105 @ 5:30pm'
+					],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		};
+
+		tClr = function() {
+			setTimeout(function() {
+				$scope.results.splice(0, $scope.results.length);
+				$scope.$apply();
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: ['We are MIST',
+						'Defend your roots.'
+					],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		};
+
+
+		$scope.$on('terminal-input', function(e, consoleInput) {
+			var cmd = consoleInput[0];
+			switch(cmd.command) {
+				case 'help': tHelp(); break;
+				case 'man': tMan(); break;
+				case 'ls' : tLs(); break;
+				case 'clr': tClr(); break;
+				// default: tDefault();
+			}
+
 
 		// $location.path('/newNgRouteYouWishToDisplay');
 	});
