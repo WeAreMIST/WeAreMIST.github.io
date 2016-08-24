@@ -95,6 +95,19 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			}, 0.1);
 		};
 
+		tDefault = function() {
+			setTimeout(function() {
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: ['Invalid Command!',
+						'type help to get help (duh)'
+					],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		};
+
 
 		$scope.$on('terminal-input', function(e, consoleInput) {
 			var cmd = consoleInput[0];
@@ -103,7 +116,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				case 'man': tMan(); break;
 				case 'ls' : tLs(); break;
 				case 'clr': tClr(); break;
-				// default: tDefault();
+				default: tDefault();
 			}
 
 
