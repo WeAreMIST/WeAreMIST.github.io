@@ -1,4 +1,4 @@
-var app = angular.module('mist', ['ngRoute', 'vtortola.ng-terminal', 'luegg.directives']);
+var app = angular.module('mist', ['ngRoute', 'vtortola.ng-terminal']);
 
 app.config(function($routeProvider) {
 	$routeProvider
