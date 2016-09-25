@@ -2700,7 +2700,11 @@ body.is-ie .wrapper.fullscreen {
 }
 #footer> .inner .menu {
   font-size: 0.8em;
-  color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.5);
+}
+#footer> .inner .menu .heart {
+  font-size: 1.1em;
+  color: rgba(255, 0, 102, 0.7);
 }
 #header+ #wrapper+ #footer> .inner {
   margin: 0 auto;
