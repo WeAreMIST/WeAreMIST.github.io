@@ -15,12 +15,14 @@
 			$sidebar = $('#sidebar');
 
 		// Hack: Enable IE flexbox workarounds.
-		if(skel.vars.IEVersion < 12)
+		if (skel.vars.IEVersion < 12) {
 			$body.addClass('is-ie');
+		}
 
 		// // Disable animations/transitions until the page has loaded.
-		if(skel.canUse('transition'))
+		if (skel.canUse('transition')) {
 			$body.addClass('is-loading');
+		}
 
 		$(document).ready(function() {
 			window.setTimeout(function() {
@@ -54,22 +56,23 @@
 		});
 
 		// Sidebar.
-		if($sidebar.length > 0) {
+		if ($sidebar.length > 0) {
 
-			var $sidebar_a = $sidebar.find('a');
+			var $sidebarLink = $sidebar.find('a');
 
-			$sidebar_a
+			$sidebarLink
 				.addClass('scrolly')
 				.on('click', function() {
 
 					var $this = $(this);
 
 					// External link? Bail.
-					if($this.attr('href').charAt(0) != '#')
+					if ($this.attr('href').charAt(0) !== '#') {
 						return;
+					}
 
 					// Deactivate all links.
-					$sidebar_a.removeClass('active');
+					$sidebarLink.removeClass('active');
 
 					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
 					$this
@@ -84,8 +87,9 @@
 						$section = $(id);
 
 					// No section for this link? Bail.
-					if($section.length < 1)
+					if ($section.length < 1) {
 						return;
+					}
 
 					// Scrollex.
 					$section.scrollex({
@@ -95,11 +99,11 @@
 						initialize: function() {
 
 							// Deactivate section.
-							if(skel.canUse('transition') && id !== '#intro')
+							if (skel.canUse('transition') && id !== '#intro')
 								$section.addClass('inactive');
 
 							// First element
-							if(id === '#intro') {
+							if (id === '#intro') {
 								$this.addClass('active');
 							}
 
@@ -111,16 +115,17 @@
 							$section.removeClass('inactive');
 
 							// No locked links? Deactivate all links and activate this section's one.
-							if($sidebar_a.filter('.active-locked').length === 0) {
+							if ($sidebarLink.filter('.active-locked').length === 0) {
 
-								$sidebar_a.removeClass('active');
+								$sidebarLink.removeClass('active');
 								$this.addClass('active');
 
 							}
 
 							// Otherwise, if this section's link is the one that's locked, unlock it.
-							else if($this.hasClass('active-locked'))
+							else if ($this.hasClass('active-locked')) {
 								$this.removeClass('active-locked');
+							}
 
 						}
 					});
@@ -135,10 +140,11 @@
 			offset: function() {
 
 				// If <=large, >small, and sidebar is present, use its height as the offset.
-				if(skel.breakpoint('large').active &&
+				if (skel.breakpoint('large').active &&
 					!skel.breakpoint('small').active &&
-					$sidebar.length > 0)
-					return $sidebar.height();
+					$sidebar.length > 0) {
+						return $sidebar.height();
+					}
 
 				return 0;
 
@@ -146,7 +152,7 @@
 		});
 
 		// Spotlights.
-		if(skel.canUse('transition'))
+		if (skel.canUse('transition')) {
 			$('.profiles > section')
 			.scrollex({
 				mode: 'middle',
@@ -155,51 +161,37 @@
 				initialize: function() {
 					console.log("hi");
 					// Deactivate section.
-					if(skel.canUse('transition'))
+					if (skel.canUse('transition')) {
 						$(this).addClass('inactive');
+					}
 
 				},
 				enter: function() {
-
 					// Activate section.
 					$(this).removeClass('inactive');
-
 				}
 
 			});
+		}
 
 		// Features.
-		if(skel.canUse('transition'))
+		if (skel.canUse('transition')) {
 			$('.features')
 			.scrollex({
 				mode: 'middle',
 				top: '-20vh',
 				bottom: '-20vh',
 				initialize: function() {
-
 					// Deactivate section.
 					$(this).addClass('inactive');
-
 				},
 				enter: function() {
-
 					// Activate section.
 					$(this).removeClass('inactive');
-
-
 				}
 			});
-
-
+		}
 
 	});
 
 })(jQuery);
-
-// $(document).ready(function() {
-//
-// 	// show page on ready
-// 	$("#loadingMask").fadeOut();
-// 	console.log("Hi");
-//
-// });
