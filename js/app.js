@@ -38,8 +38,19 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		$scope.$apply();
 	}, 0.1);
 
-/* ~Functions~ */
-		tHelp = function() {
+	/* Take user input */
+	$scope.$on('terminal-input', function(e, consoleInput) {
+		var cmd = consoleInput[0];
+		switch(cmd.command) {
+			case 'help': tHelp(); break;
+			case 'man': tMan(); break;
+			case 'ls' : tLs(); break;
+			case 'clr': tClr(); break;
+			default: tDefault();
+		}
+
+		/* ~Functions~ */
+		function tHelp() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
@@ -53,9 +64,9 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				});
 				$scope.$apply();
 			}, 0.1);
-		};
+		}
 
-		tMan = function() {
+		function tMan() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
@@ -66,21 +77,21 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				});
 				$scope.$apply();
 			}, 0.1);
-		};
+		}
 
-		tLs= function() {
+		function tLs() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['Aug 25 2016: MIST GBM - NLH 105 @ 5:30pm'
+					text: ['1st year recruitments coming up, stay tuned!'
 					],
 					breakLine: true
 				});
 				$scope.$apply();
 			}, 0.1);
-		};
+		}
 
-		tClr = function() {
+		function tClr() {
 			setTimeout(function() {
 				$scope.results.splice(0, $scope.results.length);
 				$scope.$apply();
@@ -93,9 +104,9 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				});
 				$scope.$apply();
 			}, 0.1);
-		};
+		}
 
-		tDefault = function() {
+		function tDefault() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
@@ -106,18 +117,8 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				});
 				$scope.$apply();
 			}, 0.1);
-		};
+		}
 
-
-		$scope.$on('terminal-input', function(e, consoleInput) {
-			var cmd = consoleInput[0];
-			switch(cmd.command) {
-				case 'help': tHelp(); break;
-				case 'man': tMan(); break;
-				case 'ls' : tLs(); break;
-				case 'clr': tClr(); break;
-				default: tDefault();
-			}
 
 
 		// $location.path('/newNgRouteYouWishToDisplay');
