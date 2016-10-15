@@ -38,16 +38,6 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		$scope.$apply();
 	}, 0.1);
 
-	/* Take user input */
-	$scope.$on('terminal-input', function(e, consoleInput) {
-		var cmd = consoleInput[0];
-		switch(cmd.command) {
-			case 'help': tHelp(); break;
-			case 'man': tMan(); break;
-			case 'ls' : tLs(); break;
-			case 'clr': tClr(); break;
-			default: tDefault();
-		}
 
 		/* ~Functions~ */
 		function tHelp() {
@@ -119,6 +109,16 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			}, 0.1);
 		}
 
+		/* Take user input */
+		$scope.$on('terminal-input', function(e, consoleInput) {
+			var cmd = consoleInput[0];
+			switch(cmd.command) {
+				case 'help': tHelp(); break;
+				case 'man': tMan(); break;
+				case 'ls' : tLs(); break;
+				case 'clr': tClr(); break;
+				default: tDefault();
+			}
 
 
 		// $location.path('/newNgRouteYouWishToDisplay');
