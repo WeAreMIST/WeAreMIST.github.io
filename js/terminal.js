@@ -6,7 +6,7 @@
         var me = {};
         me.typeSoundUrl =null;
         me.startSoundUrl = null;
-        me.promptConfiguration = { end: ':>', user: 'mist', separator: '@guest', path: '\\' };
+        me.promptConfiguration = { end: ':\\$', user: 'guest', separator: '@mist', path: '' };
 
         me.getTypeEffect = null;
         me.getStartEffect = null;
@@ -84,20 +84,20 @@
         };
 
         me.resetPath = function () {
-            _path = config && config.path ? config.path : '\\';
+            _path = config && config.path ? config.path : '';
             build();
         };
 
         me.resetUser = function () {
-            _user = config && config.user ? config.user : 'mist';
+            _user = config && config.user ? config.user : 'guest';
             build();
         }
 
         me.reset = function () {
-            _user = config && config.user!=null ? (config.user||'') : 'mist';
-            _path = config && config.path!=null ? (config.path||'') : '\\';
-            _userPathSeparator = config && config.separator!=null ? (config.separator||'') : '@';
-            _promptEnd = config && config.end!=null ? (config.end||'') : ':>';
+            _user = config && config.user!=null ? (config.user||'') : 'guest';
+            _path = config && config.path!=null ? (config.path||'') : '';
+            _userPathSeparator = config && config.separator!=null ? (config.separator||'') : '@mist';
+            _promptEnd = config && config.end!=null ? (config.end||'') : ':\\$';
             build();
         };
 
