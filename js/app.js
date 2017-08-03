@@ -73,7 +73,9 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['1st year recruitments coming up, stay tuned!'
+					text: ['2nd year recruitments soon',
+					'At 6 pm on 9-10 th August',
+					'Venue will be updated'
 					],
 					breakLine: true
 				});
