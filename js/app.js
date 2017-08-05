@@ -74,8 +74,8 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$broadcast('terminal-output', {
 					output: true,
 					text: ['2nd year recruitments soon',
-					'At 6 pm on 9-10 th August',
-					'Venue will be updated'
+					'9-10 th August at 5:45 PM',
+					'AB-5 203,204'
 					],
 					breakLine: true
 				});
