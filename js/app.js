@@ -73,9 +73,9 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['2nd year recruitments soon',
-					'9-10 th August at 5:45 PM',
-					'AB-5 203,204'
+					text: ['Workshop on Website Penetration',
+					'27th August at 5:45 PM',
+					'Nlh 204'
 					],
 					breakLine: true
 				});
