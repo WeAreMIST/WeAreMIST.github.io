@@ -45,10 +45,11 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$broadcast('terminal-output', {
 					output: true,
 					text: ['Available Commands:',
-						'help: Get Help',
-						'man: what we do',
-						'ls: current events',
-						'clr: clear screen'
+						'help: Get help',
+						'man: What we do',
+						'ls: Current events',
+						'clr: Clear screen',
+						'exit: Exit'
 					],
 					breakLine: true
 				});
