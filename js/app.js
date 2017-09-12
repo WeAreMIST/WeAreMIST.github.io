@@ -45,10 +45,12 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$broadcast('terminal-output', {
 					output: true,
 					text: ['Available Commands:',
-						'help: Get Help',
-						'man: what we do',
-						'ls: current events',
-						'clr: clear screen'
+						'help\t: Get help',
+						'man\t: What we do',
+						'ls\t: Current events',
+						'cat\t: File content',
+						'clr\t: Clear screen',
+						'exit\t: Exit'
 					],
 					breakLine: true
 				});
@@ -73,14 +75,38 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['Workshop on Website Penetration',
-					'27th August at 5:45 PM',
-					'Nlh 204'
+					text: ['Current Events',
+					'MUPy',
+					'//Use cat to view contents'
 					],
 					breakLine: true
 				});
 				$scope.$apply();
 			}, 0.1);
+		}
+
+		function tCat(cmd) {
+			debugger;
+			setTimeout(function() {
+					var ce='Workshop on Website Penetration\n 27th August at 5:45 PM\n NLH 204';
+					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
+					var def="Usage: cat [FILE]"
+					switch(cmd.command) {
+						case 'cat Current Events': str=ce; break;
+						case 'cat MUPy': str=py; break;
+						default: str=def;
+					}
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: [str],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		}
+		
+		function tExit() {
+			$location.url("http://localhost/WeAreMIST.github.io/");
 		}
 
 		function tClr() {
@@ -114,11 +140,13 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		/* Take user input */
 		$scope.$on('terminal-input', function(e, consoleInput) {
 			var cmd = consoleInput[0];
-			switch(cmd.command) {
+			switch(cmd.command.split(" ")[0]) {
 				case 'help': tHelp(); break;
 				case 'man': tMan(); break;
 				case 'ls' : tLs(); break;
+				case 'cat' : tCat(cmd); break;
 				case 'clr': tClr(); break;
+				case 'exit': tExit(); break;
 				default: tDefault();
 			}
 

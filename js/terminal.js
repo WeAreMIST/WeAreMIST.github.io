@@ -6,7 +6,7 @@
         var me = {};
         me.typeSoundUrl =null;
         me.startSoundUrl = null;
-        me.promptConfiguration = { end: ':/$', user: 'guest', separator: '@mist', path: '' };
+        me.promptConfiguration = { end: ':/$ ', user: 'guest', separator: '@mist', path: '' };
 
         me.getTypeEffect = null;
         me.getStartEffect = null;
@@ -97,7 +97,7 @@
             _user = config && config.user!=null ? (config.user||'') : 'guest';
             _path = config && config.path!=null ? (config.path||'') : '';
             _userPathSeparator = config && config.separator!=null ? (config.separator||'') : '@mist';
-            _promptEnd = config && config.end!=null ? (config.end||'') : ':/$';
+            _promptEnd = config && config.end!=null ? (config.end||'') : ':/$ ';
             build();
         };
 
