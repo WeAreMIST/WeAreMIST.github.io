@@ -45,10 +45,11 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$broadcast('terminal-output', {
 					output: true,
 					text: ['Available Commands:',
-						'help: Get Help',
-						'man: what we do',
-						'ls: current events',
-						'clr: clear screen'
+						'help: Get help',
+						'man: What we do',
+						'ls: Current events',
+						'clr: Clear screen',
+						'exit: Exit'
 					],
 					breakLine: true
 				});
@@ -81,6 +82,10 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				});
 				$scope.$apply();
 			}, 0.1);
+		}
+
+		function tExit() {
+			$location.url("http://localhost/WeAreMIST.github.io/");
 		}
 
 		function tClr() {
@@ -119,6 +124,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				case 'man': tMan(); break;
 				case 'ls' : tLs(); break;
 				case 'clr': tClr(); break;
+				case 'exit': tExit(); break;
 				default: tDefault();
 			}
 
