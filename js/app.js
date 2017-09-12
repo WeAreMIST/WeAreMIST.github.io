@@ -46,11 +46,12 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 					output: true,
 					text: ['Available Commands:',
 						'help\t: Get help',
-						'man\t: What we do',
-						'ls\t: Current events',
+						'man\t: Open man page',
+						'whoami: Who are we?',
+						'ls\t: List Directory Contents',
 						'cat\t: File content',
 						'clr\t: Clear screen',
-						'cd\t: Change Working Directory',
+						'cd\t: Change Directory',
 						'exit\t: Exit'
 					],
 					breakLine: true
@@ -59,7 +60,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			}, 0.1);
 		}
 
-		function tMan() {
+		function tWhoAmI() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
@@ -71,6 +72,46 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$apply();
 			}, 0.1);
 		}
+
+		function tMan(cmd) {
+			debugger;
+			setTimeout(function() {
+
+					var def="Usage: man [PATH]";
+					function Cmd(name,desc) {
+					    this.name = name;
+					    this.desc = desc;
+					}
+					var myCmds = [
+					    new Cmd("help","No manual entry for help"),
+					    new Cmd("ls", "List current working directory contents"),
+					    new Cmd("man","Man page for commands\n  "+def),
+					    new Cmd("whoami","A description of our activities and what we represent"),
+					    new Cmd("cat","Prints the contents of the file to the standard output"),
+					    new Cmd("clr","No manual entry for clr"),
+					    new Cmd("cd","Cmd for change working directory\n  Usage: cd [PATH]"),
+					    new Cmd("exit","Navigate back to the home page"),
+					];
+
+					var arg=cmd.command;	
+					arg=arg.substr(arg.indexOf(' ')+1);				
+					var string="Invalid Command!\n  "+def;
+					for(var i in myCmds)
+						 if(myCmds[i].name===arg)
+							{
+								string=myCmds[i].desc;
+								break;
+							}						
+
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: [string],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		}
+
 
 		function tLs() {
 			setTimeout(function() {
@@ -90,11 +131,12 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		function tCat(cmd) {
 			debugger;
 			setTimeout(function() {
+					var check=cmd.command;
 					var ce='Workshop on Website Penetration\n 27th August at 5:45 PM\n NLH 204';
 					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
 					var def="Usage: cat [FILE]";
 					var tur="Can't open directories";
-					switch(cmd.command.substr(str.indexOf(' ')+1) {
+					switch(check.substr(check.indexOf(' ')+1)) {
 						case 'Current Events': str=ce; break;
 						case 'MUPy': str=py; break;
 						case 'Turing/': str=tur; break;
@@ -146,7 +188,8 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			var cmd = consoleInput[0];
 			switch(cmd.command.split(" ")[0]) {
 				case 'help': tHelp(); break;
-				case 'man': tMan(); break;
+				case 'whoami': tWhoAmI(); break;
+				case 'man' : tMan(cmd); break;
 				case 'ls' : tLs(); break;
 				case 'cat' : tCat(cmd); break;
 				case 'cd' : tCd(cmd); break;
