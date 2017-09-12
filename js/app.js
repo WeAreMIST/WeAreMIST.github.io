@@ -83,6 +83,10 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			}, 0.1);
 		}
 
+		function tExit() {
+			$location.url("http://localhost/WeAreMIST.github.io/");
+		}
+
 		function tClr() {
 			setTimeout(function() {
 				$scope.results.splice(0, $scope.results.length);
@@ -119,6 +123,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				case 'man': tMan(); break;
 				case 'ls' : tLs(); break;
 				case 'clr': tClr(); break;
+				case 'exit': tExit(); break;
 				default: tDefault();
 			}
 
