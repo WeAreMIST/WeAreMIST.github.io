@@ -50,6 +50,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 						'ls\t: Current events',
 						'cat\t: File content',
 						'clr\t: Clear screen',
+						'cd\t: Change Working Directory',
 						'exit\t: Exit'
 					],
 					breakLine: true
@@ -76,6 +77,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$broadcast('terminal-output', {
 					output: true,
 					text: ['Current Events',
+					'Turing/',
 					'MUPy',
 					'//Use cat to view contents'
 					],
@@ -90,10 +92,12 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 					var ce='Workshop on Website Penetration\n 27th August at 5:45 PM\n NLH 204';
 					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
-					var def="Usage: cat [FILE]"
-					switch(cmd.command) {
-						case 'cat Current Events': str=ce; break;
-						case 'cat MUPy': str=py; break;
+					var def="Usage: cat [FILE]";
+					var tur="Can't open directories";
+					switch(cmd.command.substr(str.indexOf(' ')+1) {
+						case 'Current Events': str=ce; break;
+						case 'MUPy': str=py; break;
+						case 'Turing/': str=tur; break;
 						default: str=def;
 					}
 				$scope.$broadcast('terminal-output', {
@@ -145,6 +149,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				case 'man': tMan(); break;
 				case 'ls' : tLs(); break;
 				case 'cat' : tCat(cmd); break;
+				case 'cd' : tCd(cmd); break;
 				case 'clr': tClr(); break;
 				case 'exit': tExit(); break;
 				default: tDefault();
