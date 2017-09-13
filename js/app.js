@@ -38,6 +38,10 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		$scope.$apply();
 	}, 0.1);
 
+
+		//Counter for Bonus ;)
+		c=0;
+
 		//Current Working Directory
 		pwd="/";
 
@@ -212,11 +216,51 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 
 		function tClr() {
 			setTimeout(function() {
+				c++;
 				$scope.results.splice(0, $scope.results.length);
 				$scope.$apply();
+				str="+---------+\n  | M I S T |\n  +---------+";
+				if(c>9)
+					str="+-------------------------------------+\n  |  __  __   _____    _____   _______  |\n  | |  \\/  | |_   _|  / ____| |__   __| |\n  | | \\  / |   | |   | (___      | |    |\n  | | |\\/| |   | |    \\___ \\     | |    |\n  | | |  | |  _| |_   ____) |    | |    |\n  | |_|  |_| |_____| |_____/     |_|    |\n  |                                     |\n  +-------------------------------------+";
+				if(c==11)
+					str+="\n  I like your decidation ;)";
+				if(c==12)
+					str+="\n  You won't find anymore secrets!!";
+				if(c==13)
+					str+="\n  Don't waste your time >_<";
+				if(c==16)
+					str+="\n  Did you think I left you?";
+				if(c==17)
+					str+="\n  But man, seriously let it be..";
+				if(c==20)
+					str+="\n  Since you are so persistent I will tell you a secret";
+				if(c==21)
+					str+="\n  This is count 21";
+				if(c==25)
+					str+="\n  The secret is at count 64 :p";
+				if(c==30)
+					str+="\n  Find it if you can";
+				if(c==45)
+					str+="\n  For me it is just a matter of writing if statements ¯\_(ツ)_/¯";
+				if(c==55)
+					str+="\n  See you at the 64";
+				if(c==64)
+					str+="\n  You actually came here @_@";
+				if(c==65)
+					str+="\n  What if all this was a troll?";
+				if(c==67)
+					str+="\n  JK";
+				if(c==68)
+					str+="\n  That was it ^";
+				if(c==70)
+					str+="\n  No MORE!!!";
+				if(c==71)
+					str+="\n  Do Whatever you want";
+				if(c==100)
+					str+="\n  You got a century!";
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['+---------+\n  | M I S T |\n  +---------+'],
+					text: [str],
 					breakLine: true
 				});
 				$scope.$apply();
