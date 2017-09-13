@@ -38,6 +38,28 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		$scope.$apply();
 	}, 0.1);
 
+		//Current Working Directory
+		pwd="/";
+
+		//Commands
+		function Cmd(name,desc,argc=0,multi_arg) {
+		    this.name = name; //Name of cmd
+		    this.desc = desc; //Man Description
+		    this.argc = argc; //Number of arguements it supports 
+		    this.multi_arg = multi_arg; //If the cmd should supports multiple arguements like cat
+		}
+		//js doesn't support default arguements >_<
+		myCmds = [
+		    new Cmd("help","No manual entry for help",0,false),
+		    new Cmd("ls", "List current working directory contents",1,true),
+		    new Cmd("man","Man page for commands\n  Usage: man [PATH]",1,false),
+		    new Cmd("whoami","A description of our activities and what we represent",0,false),
+		    new Cmd("cat","Prints the contents of the file to the standard output",1,true),
+		    new Cmd("clr","Clear Screen",0,false),
+		    new Cmd("pwd","Print Working Directory",0,false),
+		    new Cmd("cd","Cmd for change working directory\n  Usage: cd [PATH]",1,false),
+		    new Cmd("exit","Navigate back to the home page",0,false),
+		];
 
 		/* ~Functions~ */
 		function tHelp() {
@@ -46,10 +68,13 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 					output: true,
 					text: ['Available Commands:',
 						'help\t: Get help',
-						'man\t: What we do',
-						'ls\t: Current events',
+						'man\t: Open man page',
+						'whoami: Who are we?',
+						'ls\t: List Directory Contents',
 						'cat\t: File content',
 						'clr\t: Clear screen',
+						'pwd\t: Print Working Directory',
+						'cd\t: Change Directory',
 						'exit\t: Exit'
 					],
 					breakLine: true
@@ -58,7 +83,7 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			}, 0.1);
 		}
 
-		function tMan() {
+		function tWhoAmI() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
@@ -71,31 +96,107 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			}, 0.1);
 		}
 
-		function tLs() {
+		function tPwd() {
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['Current Events',
-					'MUPy',
-					'//Use cat to view contents'
-					],
+					text: [pwd],
 					breakLine: true
 				});
 				$scope.$apply();
 			}, 0.1);
 		}
 
-		function tCat(cmd) {
+		function tMan(argv) {
 			debugger;
 			setTimeout(function() {
-					var ce='Workshop on Website Penetration\n 27th August at 5:45 PM\n NLH 204';
-					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
-					var def="Usage: cat [FILE]"
-					switch(cmd.command) {
-						case 'cat Current Events': str=ce; break;
-						case 'cat MUPy': str=py; break;
-						default: str=def;
+					var string=argv[1]+" is not a valid Command";
+					for(var i in myCmds)
+						 if(myCmds[i].name===argv[1])
+							{
+								string=myCmds[i].desc;
+								break;
+							}
+					if(argv.length==1)
+						string="Wrong Usage!\n  Usage: man [COMMAND]";						
+
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: [string],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		}
+
+
+		function tLs() {
+			setTimeout(function() {
+				var rootDir='Current_Events\n  Turing/\n  MUPy\n  //Use cat to view contents';
+				var turingDir='Turing is the annual Techtatva Event hosted by MIST and LUG\n  Events:\n  Mobivision\n  FunWithScripting\n  HackItOut\n  Smoked';
+				var ls=rootDir;
+				switch(pwd)
+				{
+					case "/": ls=rootDir; break;
+					case "/Turing/": ls=turingDir; break;
+				}
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: [ls],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		}
+
+		function tCd(argv) {
+			setTimeout(function() {
+				var str="";
+				if(argv.length==1)
+					str="Usage: cd [DIRECTORY]";
+				else if(argv.length==2)
+					{	
+						switch(argv[1])
+						{
+							case "/": pwd="/";break;
+							case "Turing/": pwd="/Turing/";break;
+							case "/Turing/":pwd="/Turing/";break;
+							case "..": if(pwd="/Turing/") pwd="/"; else str="Can't go up"; break;
+							default: str="Invalid Path";break;
+						}
 					}
+				
+				$scope.$broadcast('terminal-output', {
+					output: true,
+					text: [str],
+					breakLine: true
+				});
+				$scope.$apply();
+			}, 0.1);
+		}
+
+		function tCat(argv) {
+			setTimeout(function() {
+					var ce='Workshop on Website Penetration\n  27th August at 5:45 PM\n  NLH 204';
+					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
+					var wrngfile=argv[1]+" is not a valid file name";
+					var tur="cat: Turing/: Is a directory";
+					var mobi="Learn Android and IOs Dev";
+					var scrp="Learn Python and BASH Scripting";
+					var hio="Hacking 101";
+					var smkd="Our Flagship online event where we test your guile";
+					switch(argv[1]) {
+						case 'Current_Events': if(pwd=="/")str=ce;else str=wrngfile; break;
+						case 'MUPy': if(pwd=="/")str=py;else str=wrngfile; break;
+						case 'Turing/': if(pwd=="/")str=tur;else str=wrngfile; break;
+						case 'Mobivision': if(pwd=="/Turing/")str=mobi;else str=wrngfile; break;
+						case 'HackItOut': if(pwd=="/Turing/")str=hio;else str=wrngfile; break;
+						case 'FunWithScripting': if(pwd=="/Turing/")str=scrp;else str=wrngfile; break;
+						case 'Smoked': if(pwd=="/Turing/")str=smkd;else str=wrngfile; break;
+						default: str=wrngfile;
+					}
+					if(argv.length==1)
+						str="Wrong Usage!\n  Usage: cat [FILE]";
 				$scope.$broadcast('terminal-output', {
 					output: true,
 					text: [str],
@@ -115,41 +216,74 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 				$scope.$apply();
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['We are MIST',
-						'Defend your roots.'
-					],
+					text: ['+---------+\n  | M I S T |\n  +---------+'],
 					breakLine: true
 				});
 				$scope.$apply();
 			}, 0.1);
 		}
 
-		function tDefault() {
+		function tError(int=0) {
 			setTimeout(function() {
+				var str="Error: ";
+				switch(int)
+				{
+					case 0: str+='Invalid Command!\n  type help to get help (duh)'; break;
+					case 1: str+="Command doesn't take arguements"; break;
+					case 2: str+="No support for multiple arguement right now"; break;
+					case 3: str+="Command should take one arguement"; break;
+				}
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['Invalid Command!',
-						'type help to get help (duh)'
-					],
+					text: [str],
 					breakLine: true
 				});
 				$scope.$apply();
 			}, 0.1);
+			return true;
+		}
+
+		function errorCheck(argv,argc)
+		{	
+			var err=false;
+			for(var i in myCmds)
+			{					
+				if(myCmds[i].name===argv[0])
+					{	
+						if(myCmds[i].argc==0 && argc!=1)
+							err=tError(1);
+						else if(myCmds[i].argc==1 && argc>2)
+							{	
+									if(myCmds[i].multi_arg)
+										err=tError(2);
+									else
+										err=tError(3);
+							}
+						break;
+					}
+			}
+			return err;
+			//tError();
 		}
 
 		/* Take user input */
 		$scope.$on('terminal-input', function(e, consoleInput) {
-			var cmd = consoleInput[0];
-			switch(cmd.command.split(" ")[0]) {
-				case 'help': tHelp(); break;
-				case 'man': tMan(); break;
-				case 'ls' : tLs(); break;
-				case 'cat' : tCat(cmd); break;
-				case 'clr': tClr(); break;
-				case 'exit': tExit(); break;
-				default: tDefault();
-			}
-
+			var cmd = consoleInput[0].command;
+			var argv = cmd.split(" ");
+			var argc = cmd.match(/(\w+)/g).length;
+			if(!errorCheck(argv,argc))
+				switch(argv[0]) {
+					case 'help': tHelp(); break;
+					case 'whoami': tWhoAmI(); break;
+					case 'ls' : tLs(); break;
+					case 'clr': tClr(); break;
+					case 'exit': tExit(); break;
+					case 'man' : tMan(argv); break;
+					case 'pwd' : tPwd(); break;
+					case 'cat' : tCat(argv); break;
+					case 'cd' : tCd(argv); break;
+					default: tError();
+				}
 
 		// $location.path('/newNgRouteYouWishToDisplay');
 	});
