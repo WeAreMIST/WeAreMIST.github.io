@@ -75,7 +75,8 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['Current Events',
+					text: ['Membership Drive',
+					'Current Events',
 					'MUPy',
 					'//Use cat to view contents'
 					],
@@ -88,12 +89,15 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		function tCat(cmd) {
 			debugger;
 			setTimeout(function() {
-					var ce='Workshop on Website Penetration\n 27th August at 5:45 PM\n NLH 204';
+					var ce='Workshop on Website Penetration (2nd Yrs only)\n 27th August at 5:45 PM\n NLH 204';
 					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
-					var def="Usage: cat [FILE]"
+					var def="Usage: cat [FILE]";
+					var mem="Come Join Manipal Information Security Team aka MIST\n  The only security club of its kind in Manipal\n  Fee: 100/- only\n  Join the whatsapp group at http://bit.do/mist_members"
 					switch(cmd.command) {
 						case 'cat Current Events': str=ce; break;
 						case 'cat MUPy': str=py; break;
+						case 'cat Membership Drive': ;
+						case 'cat Membership': str=mem; break;
 						default: str=def;
 					}
 				$scope.$broadcast('terminal-output', {
