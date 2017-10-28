@@ -203,6 +203,6 @@ app.controller('homeController', ['$scope', function($scope) {
 app.config(['terminalConfigurationProvider', function(terminalConfigurationProvider) {
 	terminalConfigurationProvider.outputDelay = 20;
 	terminalConfigurationProvider.allowTypingWriteDisplaying = false;
-	terminalConfigurationProvider.typeSoundUrl ='https://raw.githubusercontent.com/vtortola/ng-terminal-emulator/master/example/content/type.wav';
+	// terminalConfigurationProvider.typeSoundUrl ='https://raw.githubusercontent.com/vtortola/ng-terminal-emulator/master/example/content/type.wav';
 	terminalConfigurationProvider.startSoundUrl ='https://raw.githubusercontent.com/vtortola/ng-terminal-emulator/master/example/content/start.wav';
 }]);
