@@ -93,12 +93,18 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 					var ce='Workshop on Website Penetration (2nd Yrs only)\n 27th August at 5:45 PM\n NLH 204';
 					var def="Usage: cat [FILE]";
-					var re= "//Scroll down\n" + arr.sort().join('\n') + "\n\n// darkoperator congratulates the above students on making it to the Working Committee of MIST";
 					var mem="Come Join Manipal Information Security Team aka MIST\n  The only security club of its kind in Manipal\n  Fee: 100/- only\n  Join the whatsapp group at http://bit.do/mist_members"
 					switch(cmd.command) {
 						case 'cat Current Events': str=ce; break;
 						case 'cat Membership Drive': break;
-						case 'cat Result': str=re; break;
+						case 'cat Result': setTimeout(function() {
+											$scope.$broadcast('terminal-output', {
+												output: true,
+												text: arr,
+												breakLine: true
+											});
+											$scope.$apply();
+										}, 0.1); break;
 						case 'cat Membership': str=mem; break;
 						default: str=def;
 					}
@@ -197,4 +203,6 @@ app.controller('homeController', ['$scope', function($scope) {
 app.config(['terminalConfigurationProvider', function(terminalConfigurationProvider) {
 	terminalConfigurationProvider.outputDelay = 20;
 	terminalConfigurationProvider.allowTypingWriteDisplaying = false;
+	terminalConfigurationProvider.typeSoundUrl ='https://raw.githubusercontent.com/vtortola/ng-terminal-emulator/master/example/content/type.wav';
+	terminalConfigurationProvider.startSoundUrl ='https://raw.githubusercontent.com/vtortola/ng-terminal-emulator/master/example/content/start.wav';
 }]);
