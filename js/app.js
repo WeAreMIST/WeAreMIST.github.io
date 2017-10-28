@@ -75,9 +75,10 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 			setTimeout(function() {
 				$scope.$broadcast('terminal-output', {
 					output: true,
-					text: ['Membership Drive',
+					text: [
+					'Result',
+					'Membership Drive',
 					'Current Events',
-					'MUPy',
 					'//Use cat to view contents'
 					],
 					breakLine: true
@@ -87,16 +88,17 @@ app.controller('geekController', ['$scope', '$location', function($scope, $locat
 		}
 
 		function tCat(cmd) {
-			debugger;
+			var arr = ['Pramath Ramesh', 'Ananya Kaushik', 'Akash Darshan', 'Raghav', 'Lakshay', 'Giridhar.B', 'Advait Nambiar', 'Rakshit Arora', 'Madhav Shroff', 'Ishaan Pilar', 'Someshwar', 'Vasu Agarwal', 'Nipun R', 'Keshav Kejriwal', 'Arnab Mukherjee', 'Samarth Kathal ', 'Vidur', 'Mohammed Faizaan', 'Narayan Hari', 'Nitish Gupta', 'Revathi V', 'Niloy Sarkar', 'Teja Joluru', 'Abhishek Singh', 'Sarthak Mohapatra', 'Rahul Vishal Mishra', 'Ayush Sinha', 'Lovish Badlani', 'Bilal Ashraf', 'Yagya Malik', 'Neel Vashisht', 'Pratyush Mishra', 'Uday', 'Archit Sengupta', 'Vashist Thakwani', 'Rishi Agarwal', 'Rachit Yangwal', 'Aryan', 'Ansh Raj', 'Anay Tripathi', 'Archit Dasgupta', 'Shashank Goyal', 'Varun Anusheel', 'Prathamesh Kamath', 'Jayesh Gaur', 'Vishnu Vinayak', 'Nilab Sonal', 'Numan Zaheer', 'Mukund Rawat', 'Anubhav Ch', 'Aditya Mital', 'Sai Rahul A', 'Rishabh Jaiswal', 'Ankit Kumar', 'Kunal Khanwalkar', 'Sarthak Gupta', 'Anish Janaradhan', 'Chandranshi Saraf', 'Kanchan', 'Anushree'];
+
 			setTimeout(function() {
 					var ce='Workshop on Website Penetration (2nd Yrs only)\n 27th August at 5:45 PM\n NLH 204';
-					var py="PyPals is organizing MUPy, a conference to foster interest and awareness about Python.\n  Along with several alumni of the college, PyPals shall also be inviting renowned speakers from different parts of the country to motivate and inspire coders and beginners alike.\n  Check them out at www.pypals.org";
 					var def="Usage: cat [FILE]";
+					var re= "//Scroll down\n" + arr.sort().join('\n') + "\n\n// darkoperator congratulates the above students on making it to the Working Committee of MIST";
 					var mem="Come Join Manipal Information Security Team aka MIST\n  The only security club of its kind in Manipal\n  Fee: 100/- only\n  Join the whatsapp group at http://bit.do/mist_members"
 					switch(cmd.command) {
 						case 'cat Current Events': str=ce; break;
-						case 'cat MUPy': str=py; break;
-						case 'cat Membership Drive': ;
+						case 'cat Membership Drive': break;
+						case 'cat Result': str=re; break;
 						case 'cat Membership': str=mem; break;
 						default: str=def;
 					}
